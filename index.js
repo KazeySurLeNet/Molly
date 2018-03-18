@@ -105,4 +105,4 @@ if(args.length > 0) args.shift();
     bot.user.setPresence({game : {name : 'dpg!help'}});
     
 }
-bot.login("NDIyODAxMTg5Mjc3Nzk0MzA0.DYhD0g.NnEEpkGTq4z4dLq6kGFnTixwxDQ");
+bot.login(process.env.TOKEN);
