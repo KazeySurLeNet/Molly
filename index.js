@@ -2,7 +2,6 @@ console.log("Molly> Lancement en cours...")
 
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const weather = require("weather-js");
 
 
 bot.on('ready', () => {
@@ -32,17 +31,6 @@ if(args.length > 0) args.shift();
     message.channel.send(help_embed);
     };
     
-    if(command === "nickname"){
-        if(message.member.hasPermission("ADMINISTRATOR") === true){
-            message.channel.send("Je ne peut pas changé votre pseudo mon maitre")
-            return;
-        } else {
-        let args = message.content.split(" ");
-        args.shift();
-        let username = args.join();
-        message.member.setNickname(username);
-        }
-    }
     if(command === "main"){
         let author = message.author;
         let args = message.content.split(" ");
@@ -65,34 +53,6 @@ if(args.length > 0) args.shift();
                      message.channel.send("Tu as reçus le grade Driller");
                 }
             }
-            if (command === "méteo"){
-                var location = message.content.substr(9);
-                var unit = "C";
-                
-                try {
-                    weather.find({search: location, degreeType: unit}, function(err, data) {
-                        if(!location){
-                            message.channel.send("Syntaxe : dpg!méteo [Location].")
-                            return;
-                        }
-                        if(err) {
-                            message.reply("Je ne peut pas trouvé d'information pour la méteo de " + location);
-                        } else {
-                            data = data[0];
-                            var meteo_embed = new Discord.RichEmbed()
-                            .setTitle("Météo de "+ data.location.name)
-                            .addField("Ciel", data.current.skytext)
-                            .addField("Température :thermometer:", data.current.temperature + "°" + unit)
-                            .addField("Température Ressentie :thermometer:", data.current.feelslike + "°" + unit)
-                            .addField("Vent :dash:", data.current.winddisplay)
-                            .setColor("#0000ff")
-                            .setFooter("Molly", "https://media.discordapp.net/attachments/420172766587781120/420270751975866368/molly.png");
-                            
-                            message.channel.send(meteo_embed);
-                        }
-                     });
-            }   
-            finally{}}
 });
     
     
@@ -105,4 +65,4 @@ if(args.length > 0) args.shift();
     bot.user.setPresence({game : {name : 'dpg!help'}});
     
 }
-bot.login(process.env.TOKEN);
+bot.login("NDIyODAxMTg5Mjc3Nzk0MzA0.DYhD0g.NnEEpkGTq4z4dLq6kGFnTixwxDQ");
