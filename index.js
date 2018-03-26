@@ -7,7 +7,7 @@ const token = process.env.TOKEN;
 
 bot.on('ready', () => {
 console.log(`Molly> Lancé avec succès. Sur ${bot.guilds.size} serveur(s) avec ${bot.users.size} user(s)`)
-setInterval(multigame, 10000)
+bot.user.setPresence({ game: { name: 'porter tes mineraux' }
 bot.user.setUsername("Molly");
 });
 
@@ -95,11 +95,4 @@ if(args.length > 0) args.shift();
     
         
 
- function multigame() {
-
-    bot.user.setPresence({game: {name: `Dev By KAZOU`}});
-
-    bot.user.setPresence({game : {name : '!help'}});
-    
-}
 bot.login(process.env.TOKEN);
