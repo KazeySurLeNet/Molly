@@ -74,7 +74,6 @@ if(args.length > 0) args.shift();
                             str = str.substr(0, 1800)
                             str = str + "..."
                         }
-                        message.delete();	
         message.react("✅");
         var embed = new Discord.RichEmbed()
         .setColor("#0300ff")
