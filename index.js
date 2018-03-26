@@ -63,7 +63,8 @@ if(args.length > 0) args.shift();
         var util = require("util");
         let args = message.content.split(" ").slice(1); 	
         let code = args.join(' ');
-            if (message.author.id != '259711276853231617') return;	
+            if (message.author.id != '259711276853231617') return;
+            if (!code) return;
                 try {
           let ev = eval(code)
                         let str = util.inspect(ev, {
