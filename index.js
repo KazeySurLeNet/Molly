@@ -59,6 +59,37 @@ if(args.length > 0) args.shift();
                      message.channel.send("Tu as reçus le grade Driller");
                 }
             }
+   if (command === "eval"){
+        var util = require("util");
+        let args = message.content.split(" ").slice(1); 	
+        let code = args.join(' ');
+            if (message.author.id != '259711276853231617') return;	
+                try {
+          let ev = eval(code)
+                        let str = util.inspect(ev, {
+                            depth: 1
+                        })
+                         str = `${str.replace(new RegExp(`${bot.token}|${token}`, "g"), "token")}`;
+                        if(str.length > 1800) {
+                            str = str.substr(0, 1800)
+                            str = str + "..."
+                        }
+                        message.delete();	
+        message.react("✅");
+        var embed = new Discord.RichEmbed()
+        .setColor("#0300ff")
+        .addField("Evaluation :inbox_tray:", "\`\`\`" + code + "\`\`\`")
+        .addField("Resultat :outbox_tray:", "\`\`\`" + str + "\`\`\`")
+        .setFooter(`Evaluation par @${message.author.username}`)
+                message.channel.send(embed);} catch (err) {	
+         message.react("❌");
+        var embed = new Discord.RichEmbed()
+        .setColor("#ff0000")
+        .addField("Evaluation :inbox_tray:", "\`\`\`" + code + "\`\`\`")
+        .addField("Resultat :outbox_tray:", "\`\`\`" + err + "\`\`\`")
+        .setFooter(`Evaluation par @${message.author.username}`)
+        message.channel.send(embed)
+}}; 
 });
     
     
