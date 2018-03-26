@@ -25,7 +25,7 @@ bot.on("message", message => {
 if(args.length > 0) args.shift();
 
    if(message.channel.id =! 419969015713234944){
-      message.channel.send("Commande dans le #demande-de-role s'il te plaît !)
+      message.channel.send("Commande dans le #demande-de-role s'il te plaît !")
       return;
       }                   
     if(command === "help"){
