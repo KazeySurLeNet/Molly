@@ -39,7 +39,7 @@ if(args.length > 0) args.shift();
         args.shift();
         
          if(!args[0]){
-            message.channel.send("Syntax : !main [scout/gunner/ingeneer/driller]")
+            message.channel.send("Syntaxe : !main [scout/gunner/ingeneer/driller]")
             return;
         }
         if(args[0] === "scout"){
