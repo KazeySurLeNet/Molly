@@ -37,7 +37,7 @@ if(args.length > 0) args.shift();
         args.shift();
         let game = args.join(" ");
         if(!game){
-            message.channel.send("__**Définie un Jeu !**__")
+            message.channel.send(":x: **Définie un Jeu !** :x:")
             return;
         }
         bot.user.setPresence({ game: { name: game, type: 0 } });
