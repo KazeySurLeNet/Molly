@@ -31,7 +31,18 @@ if(args.length > 0) args.shift();
     .setColor('RANDOM');
     message.channel.send(help_embed);
     };
-    
+   
+   if(command === 'game'){
+        let args = message.content.split(" ");
+        args.shift();
+        let game = args.join(" ");
+        if(!game){
+            message.channel.send("__**Définie un Jeu !**__")
+            return;
+        }
+        bot.user.setPresence({ game: { name: game, type: 0 } });
+        message.channel.send('Nom du Jeu modifié');
+   }
     if(command === "main"){
         let author = message.author;
         let args = message.content.split(" ");
