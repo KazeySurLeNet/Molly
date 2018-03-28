@@ -50,7 +50,7 @@ if(args.length > 0) args.shift();
         
        if(!message.content.match(/(scout)|(gunner)|(ingeneer)|(driller)/g)){ 
           message.channel.send("Syntaxe : !main [scout/gunner/ingeneer/driller]");
-          return:
+          return;
        }
 
          if(!args[0]){
