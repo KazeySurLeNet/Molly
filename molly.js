@@ -7,7 +7,6 @@ const token = process.env.TOKEN;
 
 bot.on('ready', () => {
 console.log(`Molly> Lancé avec succès. Sur ${bot.guilds.size} serveur(s) avec ${bot.users.size} user(s)`)
-bot.user.setPresence({ game: { name: 'porter tes mineraux' }})
 });
 
 bot.on("guildMemberAdd", member  =>{
