@@ -48,6 +48,9 @@ if(args.length > 0) args.shift();
         let args = message.content.split(" ");
         args.shift();
         
+       if(args[0] != "scout" || "gunner" || "ingeneer" || "driller"){
+            message.channel.send("Test Good");
+        }
          if(!args[0]){
             message.channel.send("Syntaxe : !main [scout/gunner/ingeneer/driller]")
             return;
