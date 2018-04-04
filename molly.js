@@ -25,7 +25,7 @@ if(args.length > 0) args.shift();
     if(command === "help"){
     var help_embed = new Discord.RichEmbed()
     .setTitle("Liste des commands")
-    .setDescription("```!help : Affiche la liste des commandes\n!main [scout/gunner/ingeneer/driller]```")
+    .setDescription("```!help : Affiche la liste des commandes\n!main [scout/gunner/ingeneer/driller]\n!notif : Active/Desactive les notifications.```")
     .setFooter("Molly", "https://media.discordapp.net/attachments/420172766587781120/420270751975866368/molly.png")
     .setColor('RANDOM');
     message.channel.send(help_embed);
