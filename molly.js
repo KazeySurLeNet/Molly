@@ -73,6 +73,18 @@ if(args.length > 0) args.shift();
                      message.channel.send("Tu as reçus le grade Driller");
                 }
             }
+   
+   if(command === "notif"){
+                    var author = message.guild.member(message.author);
+                    if(author.roles.has(message.guild.roles.find("name", "Notif").id)){
+                     author.removeRole(message.guild.roles.find("name", "Notif").id)
+                     message.reply("Tu as désactivé les notifications.")
+                } else {
+                    author.addRole(message.guild.roles.find("name", "Notif").id)
+                     message.reply("Tu as activé les notifications.")
+                }
+            }
+   
    if (command === "eval"){
         var util = require("util");
         let args = message.content.split(" ").slice(1); 	
