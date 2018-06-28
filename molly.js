@@ -10,28 +10,32 @@ console.log(`Molly> Lancé avec succès. Sur ${bot.guilds.size} serveur(s) avec 
 });
 
 bot.on("guildMemberAdd", member  =>{
-   let role = member.guild.roles.find('name', 'Membre');
-   bot.channels.find('id', '418848466316296202').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic !`)
-   member.addRole(role);
+   let membre = member.guild.roles.find('name', 'Membre');
+   let PC = member.guild.roles.find('name', 'PC');
+   bot.channels.find('id', '461942235114504192').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic !`)
+   member.addRole(membre);
+   member.addRole(PC);
 });
 
 bot.on("message", message => {
+
+    if(message.content.startsWith("!")){
+    if(message.content.match(/(!main)|(!help)|(!game)|(!xbox)|(!pc)|(!notif)/g)){
+    if(message.channel.id != "461985918409113600") return message.delete(100) 
+    }
+}
     
-    const args = message.content.slice("!").trim().split(" ");
-    const command = args[0].substring(1);
-    
-if(args.length > 0) args.shift();
           
-    if(command === "help"){
+    if(message.content.startsWith("!help")){
     var help_embed = new Discord.RichEmbed()
     .setTitle("Liste des commands")
-    .setDescription("```!help : Affiche la liste des commandes\n!main [scout/gunner/ingeneer/driller]\n!notif : Active/Desactive les notifications.```")
+    .setDescription("```!help : Affiche la liste des commandes\n!main [scout/gunner/ingeneer/driller]\n!notif : Active/Desactive les notifications.\n!xbox : T'ajoute le grade xbox\n!pc : t'ajoute le grade pc```")
     .setFooter("Molly", "https://media.discordapp.net/attachments/420172766587781120/420270751975866368/molly.png")
     .setColor('RANDOM');
     message.channel.send(help_embed);
     };
    
-   if(command === 'game'){
+    if(message.content.startsWith("!game")){
         let args = message.content.split(" ");
         args.shift();
         let game = args.join(" ");
@@ -42,39 +46,53 @@ if(args.length > 0) args.shift();
         bot.user.setPresence({ game: { name: game, type: 0 } });
         message.channel.send('Nom du Jeu modifié');
    }
-    if(command === "main"){
+   if(message.content.startsWith("!main")){
         let author = message.author;
         let args = message.content.split(" ");
         args.shift();
         
-       if(!message.content.match(/(scout)|(gunner)|(ingeneer)|(driller)/g)){ 
-          message.channel.send("Syntaxe : !main [scout/gunner/ingeneer/driller]");
+       if(!message.content.match(/(scout)|(gunner)|(engineer)|(driller)/g)){ 
+          message.channel.send("Syntaxe : !main [scout/gunner/engineer/driller]");
           return;
        }
 
          if(!args[0]){
-            message.channel.send("Syntaxe : !main [scout/gunner/ingeneer/driller]")
+            message.channel.send("Syntaxe : !main [scout/gunner/engineer/driller]")
             return;
         }
         if(args[0] === "scout"){
-           message.member.addRole(message.guild.roles.find("name", "Scout / Éclaireur").id);
+           message.member.addRole(message.guild.roles.find("name", "Scout").id);
             message.channel.send("Tu as reçus le grade Scout");
         }
           if(args[0] === "gunner"){
-               message.member.addRole(message.guild.roles.find("name", "Gunner / Soldat").id);
+               message.member.addRole(message.guild.roles.find("name", "Gunner").id);
                 message.channel.send("Tu as reçus le grade Gunner");
             }
-               if(args[0] === "ingeneer"){
-                    message.member.addRole(message.guild.roles.find("name", "Ingeneer / Ingénieur").id);
-                     message.channel.send("Tu as reçus le grade Ingeneer");
+               if(args[0] === "engineer"){
+                    message.member.addRole(message.guild.roles.find("name", "Engineer").id);
+                     message.channel.send("Tu as reçus le grade Engineer");
              }
                   if(args[0] === "driller"){
-                    message.member.addRole(message.guild.roles.find("name", "Driller / Foreur").id);
+                    message.member.addRole(message.guild.roles.find("name", "Driller").id);
                      message.channel.send("Tu as reçus le grade Driller");
                 }
             }
+            
+            if(message.content.startsWith("!xbox")){
+                message.member.addRole(message.guild.roles.find("name", "Xbox").id);
+                message.member.removeRole(message.guild.roles.find("name", "PC").id)
+                 message.channel.send("Tu as reçus le grade Xbox");
+            }
+
+            if(message.content.startsWith("!pc")){
+                message.member.addRole(message.guild.roles.find("name", "PC").id);
+                message.member.removeRole(message.guild.roles.find("name", "Xbox").id)
+                 message.channel.send("Tu as reçus le grade PC");
+            }
+        
+
    
-   if(command === "notif"){
+            if(message.content.startsWith("!notif")){
                     var author = message.guild.member(message.author);
                     if(author.roles.has(message.guild.roles.find("name", "Notif").id)){
                      author.removeRole(message.guild.roles.find("name", "Notif").id)
@@ -85,7 +103,7 @@ if(args.length > 0) args.shift();
                 }
             }
    
-   if (command === "eval"){
+        if(message.content.startsWith("!eval")){
         var util = require("util");
         let args = message.content.split(" ").slice(1); 	
         let code = args.join(' ');
@@ -104,7 +122,7 @@ if(args.length > 0) args.shift();
         message.react("✅");
         var embed = new Discord.RichEmbed()
         .setColor("#0300ff")
-        .addField("Evaluation :inbox_tray:", "\`\`\`" + code + "\`\`\`")
+        .addField("Evaluation :inbox_tray:", "\`\`\`JS" + code + "\`\`\`")
         .addField("Resultat :outbox_tray:", "\`\`\`" + str + "\`\`\`")
         .setFooter(`Evaluation par @${message.author.username}`)
                 message.channel.send(embed);} catch (err) {	
