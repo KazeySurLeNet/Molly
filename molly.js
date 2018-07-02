@@ -12,7 +12,9 @@ console.log(`Molly> Lancé avec succès. Sur ${bot.guilds.size} serveur(s) avec 
 bot.on("guildMemberAdd", member  =>{
    let membre = member.guild.roles.find('name', 'Membre');
    let PC = member.guild.roles.find('name', 'PC');
-   bot.channels.find('id', '462017313516945448').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic ! Pense à lire le #commandes-molly👉🤖`)
+   bot.channels.find('id', '462017313516945448').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic ! Pense à lire le #informations📋 et le #annonces🔔`)
+   member.addRole(membre);olly👉🤖`)`)
+   member.addRole(membre);olly👉🤖`)
    member.addRole(membre);
    member.addRole(PC);
 });
